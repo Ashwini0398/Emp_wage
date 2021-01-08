@@ -6,6 +6,9 @@ EMP_RATE_PER_HR=20
 Working_Days=20
 Max_Hrs=48
 
+#define array
+declare -a empWageArray
+
 
 #define variable
  totalWorkingDays=0
@@ -40,7 +43,12 @@ do
 	((totalWorkingDays++))
 	empHrs="$( getWorkingHrs $empCheck )"
 	totalEmpHrs=$(( $totalEmpHrs + $empHrs ))
+	empWageArray[$totalWorkingDays]=$(( $empHrs * $Emp_Rate_Per_Hr ))
+
 
 done
 salary=$(( $totalEmpHrs * $Emp_Rate_Per_Hr ))
+echo "Day ${!empWageArray[@]}"
+echo "Daily Wages: ${empWageArray[@]}"
+
 
