@@ -3,13 +3,17 @@
 echo " employee wage problems "
 #define constants
 Is_Present=1
+EMP_RATE_PER_HR=20
 
 #define variable
 empCheck=$((RANDOM%2))
 
 if [ $Is_Present -eq $empCheck ]
 then
-	echo " Employee is Present"
+	empHrs=8
+	salary=$((  $empHrs * $EMP_RATE_PER_HR ))
+
 else
-	echo "Employee is absent"
+	empHrs=0
+
 fi
