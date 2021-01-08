@@ -1,6 +1,7 @@
 #! /bin/bash -x
 
-echo " employee wage problems " 
+echo " employee wage problems "
+ 
 Is_Present_Full_Time=1 Is_Present_Part_Time=2 
 EMP_RATE_PER_HR=20 
 Working_Days=20
