@@ -11,6 +11,24 @@ Max_Hrs=48
  totalWorkingDays=0
 totalEmpHrs=0
 
+function getWorkingHrs()
+{
+        local emphrs=0
+        local empcheck=$1
+         case $empCheck in
+
+                $Is_Present_Full_Time)empHrs=8
+                ;;
+                $Is_Present_Part_Time) empHrs=4
+                ;;
+                *) empHrs=0
+                ;;
+        esac
+        echo $empHrs
+}
+
+
+
 while [ $totalWorkingDays -le $Working_Days ] && [ $totalEmpHrs -lt $Max_Hrs ]  
 do
 
@@ -20,18 +38,7 @@ do
 	empHrs=0
 	
 	((totalWorkingDays++))
-
-	#check condition
-
-	case $empCheck in
-
-		$Is_Present_Full_Time)empHrs=8
-		;;
-		$Is_Present_Part_Time) empHrs=4
-		;;
-		*) empHrs=0
-		;;
-	esac
+	empHrs="$( getWorkingHrs $empCheck )"
 	totalEmpHrs=$(( $totalEmpHrs + $empHrs ))
 
 done
