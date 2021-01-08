@@ -4,24 +4,36 @@ echo " employee wage problems "
 Is_Present_Full_Time=1 Is_Present_Part_Time=2 
 EMP_RATE_PER_HR=20 
 Working_Days=20
+Max_Hrs=48
 
 
-for((i=0;i<=Working_Days;i++))
-do
 #define variable
-empCheck=$((RANDOM%3))
-empHrs=0
+ totalWorkingDays=0
+totalEmpHrs=0
 
-case $empCheck in
+while [ $totalWorkingDays -le $Working_Days ] && [ $totalEmpHrs -lt $Max_Hrs ]  
+do
 
-$Is_Present_Full_Time)empHrs=8
-        ;;
-$Is_Present_Part_Time) empHrs=4
-        ;;
-        *) empHrs=0
-        ;;
-esac
-salary=$(( $empHrs * $Emp_Rate_Per_Hr ))
+	#Define  variable
+
+	empCheck=$((RANDOM%3))
+	empHrs=0
+	
+	((totalWorkingDays++))
+
+	#check condition
+
+	case $empCheck in
+
+		$Is_Present_Full_Time)empHrs=8
+		;;
+		$Is_Present_Part_Time) empHrs=4
+		;;
+		*) empHrs=0
+		;;
+	esac
+	totalEmpHrs=$(( $totalEmpHrs + $empHrs ))
 
 done
+salary=$(( $totalEmpHrs * $Emp_Rate_Per_Hr ))
 
